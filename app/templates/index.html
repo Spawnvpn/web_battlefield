@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BATTLEFIELD</title>
+</head>
+<body>
+{% extends "base.html" %}
+{% block content %}
+
+    <h1>BATTLEFIELD</h1>
+    <form action="" method="POST">
+        <b>Enter quantity of armies</b>
+            {{form.quantity(size=2)}}
+        <input type="submit" value="Enter">
+    </form>
+
+{% endblock %}
+</body>
+</html>
