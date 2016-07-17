@@ -11,10 +11,19 @@
     <h1>BATTLEFIELD</h1>
     <form action="" method="POST">
         <b>Enter quantity of armies</b>
-            {{form.quantity(size=2)}}
-        <input type="submit" value="Enter">
+        <select name="quantity">
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+        </select>
+        <input type="submit" value="Enter" name="quantity">
     </form>
-
 {% endblock %}
 </body>
 </html>

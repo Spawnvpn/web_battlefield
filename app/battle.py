@@ -124,8 +124,8 @@ class Battlefield(object):
     def start(self):
         armies = list()
         for x in range(self.quan_armies):
-            number_of_units = self.units[x]
-            number_of_squads = self.squads[x]
+            number_of_units = int(self.units[x])
+            number_of_squads = int(self.squads[x])
             strategy = self.strategy[x]
             x = Army(number_of_units, number_of_squads, strategy)
             armies.append(x)
@@ -150,10 +150,3 @@ class Battlefield(object):
                     self.winner = "Army %s win!" % (armies.index(win) + 1)
                     self.armies_active = False
         return
-
-armies_packed = False
-armies_quantity = None
-i = 0
-squads = []
-units = []
-strategy = []

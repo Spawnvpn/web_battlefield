@@ -5,14 +5,62 @@
     <title>BATTLEFIELD</title>
 </head>
 <body>
-<form action="/repeat" method="POST">
-        <b>Enter quantity of squads %s army</b>
-        <input type="text" name="quantity of squads"><br>
-        <b>Enter quantity of units %s army</b>
-        <input type="text" name="quantity of units"><br>
-        <b>Enter strategy %s army</b>
-        <input type="text" name="strategy"><br>
-        <input type="submit" value="Enter">
+{% extends "base.html" %}
+{% block content %}
+<form action="" onsubmit="event.preventDefault();" method="POST" name="param">
+        <b>Enter quantity of squads {{ quantity }} army</b>
+        <select name="squads">
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+        </select><br>
+        <b>Enter quantity of units {{ quantity }} army</b>
+        <select name="units">
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+        </select><br>
+        <b>Enter strategy {{ quantity }} army</b>
+        <select name="strategy">
+            <option>strongest</option>
+            <option>weakest</option>
+            <option>random</option>
+        </select><br>
+        <input type="submit" value="Enter" name="param">
+        <script>
+            $(function() {
+    $('form').submit(function() {
+        $.ajax({
+            url: '/form',
+            data: $('form').serialize(),
+            type: 'POST',
+            success: function(response) {
+                if (response == '/result') {
+                    window.location = response
+                }
+            }
+        });
+    });
+});
+
+//                $( "form" ).on( "submit", function( event ) {
+//                    event.preventDefault();
+//                    console.log($(this).serialize());
+//                    $.post('form', $(this).serialize());
+//                    $.success(console.log(response))
+//
+//                });
+        </script>
     </form>
+{% endblock %}
 </body>
 </html>
