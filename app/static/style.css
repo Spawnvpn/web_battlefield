@@ -1,21 +1,15 @@
-div {
-    color: #b6ffeb
+div, a {
+    color: #fff9fc
 }
 
-a {
-    color: #4b5585;
-}
 
 body {
     background-image: url("image.jpg");
     background-size: cover;
 }
 
-form, h1, h2 {
+form, h1, h3 {
     margin: 20px 60px 10px 1200px;
-}
-
-h1 {
     color: #4a4d6a;
 }
 
@@ -26,5 +20,5 @@ h1 {
 .winner {
     margin-left: 1200px;
     color: #2a3169;
-    font-size: 15px;
+    font-size: 20px;
 }
