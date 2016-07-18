@@ -1,15 +1,14 @@
 <html>
     <head>
-    {% if title %}
+        <link href="../static/style.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        {% if title %}
         <title>{{title}}</title>
         {% else %}
         <title>Battlefield</title>
         {% endif %}
     </head>
     <body>
-    <script type=text/javascript src="{{url_for('static', filename='jquery.js') }}"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-
     <div>Battlefield: <a href="/index">Home</a></div>
     <hr>
     {% with messages = get_flashed_messages() %}

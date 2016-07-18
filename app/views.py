@@ -10,6 +10,7 @@ def index():
     session.clear()
     form = ArmiesQuantity()
     if request.method == 'POST':
+        session['count'] = 0
         session['army_quantity'] = form.data
         return redirect('/form')
     return render_template('index.html')
@@ -37,7 +38,8 @@ def form():
             go.start()
             session['winner'] = go.winner
             return '/result'
-    return render_template('form.html', quantity=session['army_quantity']['quantity'])
+        session['count'] += 1
+    return render_template('form.html')
 
 
 @app.route('/result', methods=['GET', 'POST'])

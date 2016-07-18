@@ -6,6 +6,11 @@ app = Flask(__name__)
 app.config.from_object('config')
 
 
+def get_resource_as_string(name, charset='utf-8'):
+    with app.open_resource(name) as f:
+        return f.read().decode(charset)
+
+
 class BeakerSessionInterface(SessionInterface):
 
     def open_session(self, app, request):
@@ -23,4 +28,5 @@ session_opts = {
 
 app.wsgi_app = SessionMiddleware(app.wsgi_app, session_opts)
 app.session_interface = BeakerSessionInterface()
+app.jinja_env.globals['get_resource_as_string'] = get_resource_as_string
 from app import views

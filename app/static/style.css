@@ -1,0 +1,30 @@
+div {
+    color: #b6ffeb
+}
+
+a {
+    color: #4b5585;
+}
+
+body {
+    background-image: url("image.jpg");
+    background-size: cover;
+}
+
+form, h1, h2 {
+    margin: 20px 60px 10px 1200px;
+}
+
+h1 {
+    color: #4a4d6a;
+}
+
+#param {
+    margin-left: 1200px;
+}
+
+.winner {
+    margin-left: 1200px;
+    color: #2a3169;
+    font-size: 15px;
+}
