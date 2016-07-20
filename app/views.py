@@ -4,13 +4,13 @@ from forms import ArmiesQuantity
 from app import battle
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
+
     session.clear()
     form = ArmiesQuantity()
     if request.method == 'POST':
-        session['count'] = 0
         session['army_quantity'] = form.data
         return redirect('/form')
     return render_template('index.html')
@@ -30,15 +30,12 @@ def form():
         session['armies_squads'].append(request.form['squads'])
         session['armies_strategy'].append(request.form['strategy'])
         if len(session['armies_units']) == int(session['army_quantity']['quantity']):
-            print(session['armies_units'], session['armies_squads'],
-                  session['armies_strategy'])
             go = battle.Battlefield(quan_armies=int(session['army_quantity']['quantity']),
                                     units=session['armies_units'], squads=session['armies_squads'],
                                     strategy=session['armies_strategy'])
             go.start()
             session['winner'] = go.winner
             return '/result'
-        session['count'] += 1
     return render_template('form.html')
 
 

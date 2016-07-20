@@ -1,4 +1,4 @@
-"""""""""
+"""
 This module implements the logic of the battle between the armies.
 First we need to specify the number of armies, the number of units
 of each army, the number of units in the unit of each army and the
@@ -7,12 +7,17 @@ would fight each other will be selected. Logic armies battle consists
 in choosing the enemy army unit according to the strategy and attack
 the last chance of the current army squad.
 After the victory of one army over 2 random selected and the cycle repeats.
-"""""""""
+"""
 
 from units import *
 
 
 class Squad(object):
+    """Gets the number of units, their power, takes the the
+    damage of units and check units status (active/inactive).
+    :arg self.number_of_units, :type int
+    :arg self.power, :type float
+    :arg self.active, :type boolean"""
 
     def __init__(self, number_of_units):
         self.number_of_units = number_of_units
@@ -56,6 +61,12 @@ class Squad(object):
 
 
 class Army(object):
+    """Gets the number of squads, the number of units of each squad, army
+    strategy, attacks an enemy army and check squads status (active/inactive).
+    :arg self.number_of_squads, :type int
+    :arg self.number_of_units, :type int
+    :arg self.strategy, :type str
+    :arg self.active, :type boolean"""
 
     def __init__(self, number_of_squads, number_of_units, strategy):
         self.number_of_squads = number_of_squads
@@ -74,6 +85,11 @@ class Army(object):
             self.squads.append(Squad(self.number_of_units))
 
     def get_strategy(self, army):
+        """It sorts the list of squads depending on the strategy.
+        If the weakest strategy sort by ascending power units.
+        If the strongest strategy sort by descending power units.
+        If the random strategy shuffle list."""
+
         if self.strategy == "random":
             random.shuffle(army.squads)
 
@@ -112,6 +128,15 @@ class Army(object):
 
 
 class Battlefield(object):
+    """It reduces the two armies from the list of armies on the battlefield,
+    until one of them does not win until all armies will are inactive.
+    :arg self.armies_active :type boolean
+    :arg self.quan_armies :type int
+    :arg self. units :type int
+    :arg self.squads :type int
+    :arg self.strategy :type str
+    :arg self.winner :type str
+    """
 
     def __init__(self, armies_active=True, winner=None, **kwargs):
         self.armies_active = armies_active
@@ -122,6 +147,9 @@ class Battlefield(object):
         self.winner = winner
 
     def start(self):
+        """Choose of list of the armies two random army and while they are
+        active, there is a battle. After that the cycle is repeated."""
+
         armies = list()
         for x in range(self.quan_armies):
             number_of_units = int(self.units[x])
@@ -139,6 +167,9 @@ class Battlefield(object):
             self.is_active_armies(armies)
 
     def is_active_armies(self, armies):
+        """Gets the number of inactive armies as long as their number
+        does not become at one less active armies."""
+
         count_inactive_armies = int()
         for army in armies:
             if not army.active:
@@ -149,4 +180,3 @@ class Battlefield(object):
                     # print("Army %s win!" % (armies.index(win) + 1))
                     self.winner = "Army %s win!" % (armies.index(win) + 1)
                     self.armies_active = False
-        return
