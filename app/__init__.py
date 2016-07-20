@@ -2,9 +2,6 @@ from flask import Flask
 from flask.sessions import SessionInterface
 from beaker.middleware import SessionMiddleware
 
-app = Flask(__name__)
-app.config.from_object('config')
-
 
 def get_resource_as_string(name, charset='utf-8'):
     with app.open_resource(name) as f:
@@ -26,6 +23,9 @@ session_opts = {
     'session.data_dir': './cache',
 }
 
+
+app = Flask(__name__)
+app.config.from_object('config')
 app.wsgi_app = SessionMiddleware(app.wsgi_app, session_opts)
 app.session_interface = BeakerSessionInterface()
 app.jinja_env.globals['get_resource_as_string'] = get_resource_as_string

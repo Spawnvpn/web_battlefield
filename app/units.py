@@ -113,13 +113,14 @@ class Vehicle(Unit):
                 active_operators.append(operator)
         return active_operators
 
+    def calc_experience(self):
+        exp = float()
+        for operator in self.operators:
+            exp += operator.experience
+        return exp
+
     def get_armour(self):
-        def calc_experience():
-            exp = float()
-            for operator in self.operators:
-                exp += operator.experience
-            return exp
-        self.armour = 0.05 + calc_experience() / 100
+        self.armour = 0.05 + self.calc_experience() / 100
         return self.armour / 2
 
     def take_damage(self, damage):

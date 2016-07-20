@@ -1,6 +1,6 @@
 from app import app
 from flask import session, render_template, redirect, request
-from forms import ArmiesQuantity
+from app.forms import ArmiesQuantity
 from app import battle
 
 

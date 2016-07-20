@@ -9,7 +9,8 @@ the last chance of the current army squad.
 After the victory of one army over 2 random selected and the cycle repeats.
 """
 
-from units import *
+import random
+from app.units import Solder, Vehicle
 
 
 class Squad(object):
